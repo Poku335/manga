@@ -75,7 +75,7 @@ function UserManagement() {
       
       <div className="management-container">
         <div className="management-header">
-          <h1>👥 จัดการผู้ใช้</h1>
+          <h1><span className="icon icon-user" aria-hidden="true"></span> จัดการผู้ใช้</h1>
           <button className="btn-back" onClick={() => navigate('/dashboard')}>
             ← กลับ Dashboard
           </button>
@@ -117,12 +117,16 @@ function UserManagement() {
                   <td>{u.email}</td>
                   <td>
                     <span className={`role-badge ${u.role}`}>
-                      {u.role === 'admin' ? '👑 Admin' : '👤 User'}
+                      {u.role === 'admin' ? (
+                        '👑 Admin'
+                      ) : (
+                        <><span className="icon icon-user" aria-hidden="true"></span> User</>
+                      )}
                     </span>
                   </td>
                   <td>
                     <span className={`status-badge ${u.status}`}>
-                      {u.status === 'active' ? '✅ ใช้งาน' : '🚫 ถูกแบน'}
+                      {u.status === 'active' ? '✔ ใช้งาน' : '✘ ถูกแบน'}
                     </span>
                   </td>
                   <td>{new Date(u.created_at).toLocaleDateString('th-TH')}</td>
@@ -130,15 +134,15 @@ function UserManagement() {
                     <div className="action-btns">
                       {u.status === 'active' ? (
                         <button className="btn-ban" onClick={() => handleBan(u.id)}>
-                          🚫 แบน
+                          ✘ แบน
                         </button>
                       ) : (
                         <button className="btn-unban" onClick={() => handleUnban(u.id)}>
-                          ✅ ปลดแบน
+                          ✔ ปลดแบน
                         </button>
                       )}
                       <button className="btn-delete" onClick={() => handleDelete(u.id)}>
-                        🗑️ ลบ
+                        <span className="icon icon-delete" aria-hidden="true"></span> ลบ
                       </button>
                     </div>
                   </td>

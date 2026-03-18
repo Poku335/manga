@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { comicsAPI } from '../api/comics';
+import Navbar from './Navbar';
 import './Reader.css';
 
 function Reader() {
@@ -37,8 +38,10 @@ function Reader() {
   }
 
   return (
-    <div className="reader-page">
-      <div className="reader-header">
+    <>
+      <Navbar />
+      <div className="reader-page">
+        <div className="reader-header">
         <button onClick={() => navigate(`/comics/${comicId}`)} className="btn-back">
           ← Back
         </button>
@@ -58,7 +61,8 @@ function Reader() {
           />
         ))}
       </div>
-    </div>
+      </div>
+    </>
   );
 }
 

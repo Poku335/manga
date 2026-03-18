@@ -1,17 +1,17 @@
-# This file is auto-generated from the current state of the database. Instead
-# of editing this file, please use the migrations feature of Active Record to
-# incrementally modify your database, and then regenerate this schema definition.
-#
-# This file is the source Rails uses to define your schema when running `bin/rails
-# db:schema:load`. When creating a new database, `bin/rails db:schema:load` tends to
-# be faster and is potentially less error prone than running all of your
-# migrations from scratch. Old migrations may fail to apply correctly if those
-# migrations use external dependencies or application code.
-#
-# It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_02_23_000007) do
-  # These are extensions that must be enabled in order to support this database
+
+
+
+
+
+
+
+
+
+
+
+ActiveRecord::Schema[8.1].define(version: 2026_03_12_000001) do
+
   enable_extension "pg_catalog.plpgsql"
 
   create_table "bookmarks", force: :cascade do |t|
@@ -36,16 +36,33 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_23_000007) do
     t.index ["comic_id"], name: "index_chapters_on_comic_id"
   end
 
+  create_table "comic_genres", force: :cascade do |t|
+    t.bigint "comic_id", null: false
+    t.datetime "created_at", null: false
+    t.bigint "genre_id", null: false
+    t.datetime "updated_at", null: false
+    t.index ["comic_id", "genre_id"], name: "index_comic_genres_on_comic_id_and_genre_id", unique: true
+    t.index ["comic_id"], name: "index_comic_genres_on_comic_id"
+    t.index ["genre_id"], name: "index_comic_genres_on_genre_id"
+  end
+
   create_table "comics", force: :cascade do |t|
     t.string "author"
+    t.decimal "average_rating", precision: 3, scale: 2, default: "0.0"
+    t.integer "bookmarks_count", default: 0
     t.string "cover_image"
     t.datetime "created_at", null: false
     t.text "description"
+    t.string "primary_genre"
+    t.integer "ratings_count", default: 0
+    t.string "secondary_genre"
     t.string "status", default: "draft"
     t.string "title", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id", null: false
     t.integer "views_count", default: 0
+    t.index ["primary_genre"], name: "index_comics_on_primary_genre"
+    t.index ["secondary_genre"], name: "index_comics_on_secondary_genre"
     t.index ["status"], name: "index_comics_on_status"
     t.index ["title"], name: "index_comics_on_title"
     t.index ["user_id"], name: "index_comics_on_user_id"
@@ -60,6 +77,14 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_23_000007) do
     t.index ["comic_id"], name: "index_comments_on_comic_id"
     t.index ["created_at"], name: "index_comments_on_created_at"
     t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "genres", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.text "description"
+    t.string "name", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_genres_on_name", unique: true
   end
 
   create_table "pages", force: :cascade do |t|
@@ -110,6 +135,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_23_000007) do
   add_foreign_key "bookmarks", "chapters"
   add_foreign_key "bookmarks", "users"
   add_foreign_key "chapters", "comics"
+  add_foreign_key "comic_genres", "comics"
+  add_foreign_key "comic_genres", "genres"
   add_foreign_key "comics", "users"
   add_foreign_key "comments", "comics"
   add_foreign_key "comments", "users"

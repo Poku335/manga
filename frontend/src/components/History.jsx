@@ -38,13 +38,13 @@ function History() {
       
       <div className="history-container">
         <div className="history-header">
-          <h1>📚 ประวัติการอ่าน</h1>
+          <h1><span className="icon icon-bookmark" aria-hidden="true"></span> ประวัติการอ่าน</h1>
           <p>การ์ตูนที่คุณอ่านล่าสุด</p>
         </div>
 
         {history.length === 0 ? (
           <div className="empty-state">
-            <div className="empty-icon">📖</div>
+            <div className="empty-icon"><span className="icon icon-bookmark" aria-hidden="true"></span></div>
             <h2>ยังไม่มีประวัติการอ่าน</h2>
             <p>เริ่มอ่านการ์ตูนเพื่อบันทึกประวัติของคุณ</p>
             <button className="btn-browse" onClick={() => navigate('/comics')}>
@@ -56,8 +56,8 @@ function History() {
             {history.map((item) => (
               <div key={item.id} className="history-item" onClick={() => navigate(`/comics/${item.comic?.id}`)}>
                 <img
-                  src={item.comic?.cover_image || 'https://via.placeholder.com/120x160'}
-                  alt={item.comic?.title}
+                  src={item.comic?.cover_image || 'https://via.placeholder.com/150x220?text=No+Cover'}
+                  alt={item.comic?.title || 'No title'}
                   className="history-cover"
                 />
                 <div className="history-details">

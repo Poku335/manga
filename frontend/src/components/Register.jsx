@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { authAPI } from '../api/auth';
 import { useAuthStore } from '../store/authStore';
+import Navbar from './Navbar';
 import './Login.css';
 
 function Register() {
@@ -37,8 +38,10 @@ function Register() {
   };
 
   return (
-    <div className="auth-container" style={{background: 'linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)'}}>
-      <div className="auth-card">
+    <>
+      <Navbar />
+      <div className="auth-container" style={{background: 'linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)'}}>
+        <div className="auth-card">
         <h2 className="auth-title">Create Account</h2>
 
         <form onSubmit={handleSubmit} className="auth-form">
@@ -71,7 +74,8 @@ function Register() {
           <button onClick={() => navigate('/login')} className="link-btn">Sign in</button>
         </div>
       </div>
-    </div>
+      </div>
+    </>
   );
 }
 

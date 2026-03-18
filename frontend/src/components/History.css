@@ -1,6 +1,6 @@
 .history-page {
   min-height: 100vh;
-  background: #ffffff;
+  background: #0F0F12;
 }
 
 .history-container {
@@ -16,14 +16,14 @@
 
 .history-header h1 {
   font-size: 28px;
-  color: #333;
+  color: #FFFFFF;
   margin-bottom: 10px;
   font-weight: 600;
 }
 
 .history-header p {
   font-size: 14px;
-  color: #666;
+  color: #B8B8C0;
 }
 
 .history-list {
@@ -33,24 +33,29 @@
 }
 
 .history-item {
-  background: #fff;
-  border: 1px solid #e0e0e0;
+  background: #15151A;
+  border: 1px solid #2A2A33;
   padding: 16px;
   display: flex;
   gap: 16px;
   cursor: pointer;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  color: #B8B8C0;
 }
 
 .history-item:hover {
-  border-color: #333;
+  border-color: #3FA9FF;
+  background: #1C1C22;
 }
 
 .history-cover {
   width: 100px;
   height: 140px;
   object-fit: cover;
-  border: 1px solid #e0e0e0;
+  border: 1px solid #2A2A33;
   flex-shrink: 0;
+  border-radius: 4px;
 }
 
 .history-details {
@@ -62,13 +67,13 @@
 
 .history-details h3 {
   font-size: 18px;
-  color: #333;
+  color: #FFFFFF;
   margin-bottom: 6px;
   font-weight: 600;
 }
 
 .history-author {
-  color: #666;
+  color: #B8B8C0;
   font-size: 13px;
   margin-bottom: 12px;
 }
@@ -80,16 +85,16 @@
 }
 
 .progress-badge {
-  background: #f5f5f5;
-  color: #333;
+  background: #1C1C22;
+  color: #3FA9FF;
   padding: 6px 12px;
   font-size: 12px;
-  border: 1px solid #e0e0e0;
+  border: 1px solid #2A2A33;
 }
 
 .btn-continue {
   padding: 8px 20px;
-  background: #333;
+  background: #7C5CFF;
   color: white;
   border: none;
   font-size: 13px;

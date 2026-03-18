@@ -72,7 +72,13 @@ function ComicForm() {
       
       <div className="form-container">
         <div className="form-header">
-          <h1>{isEdit ? '✏️ แก้ไขการ์ตูน' : '➕ เพิ่มการ์ตูนใหม่'}</h1>
+          <h1>
+            {isEdit ? (
+              <><span className="icon icon-edit" aria-hidden="true"></span> แก้ไขการ์ตูน</>
+            ) : (
+              <><span className="icon icon-add" aria-hidden="true"></span> เพิ่มการ์ตูนใหม่</>
+            )}
+          </h1>
           <button className="btn-back" onClick={() => navigate('/dashboard')}>
             ← ยกเลิก
           </button>
@@ -138,8 +144,8 @@ function ComicForm() {
                 onChange={handleChange}
                 className="select"
               >
-                <option value="draft">📝 แบบร่าง</option>
-                <option value="published">✅ เผยแพร่</option>
+                <option value="draft">แบบร่าง</option>
+                <option value="published">✔ เผยแพร่</option>
               </select>
             </div>
           </div>
@@ -160,7 +166,13 @@ function ComicForm() {
               ยกเลิก
             </button>
             <button type="submit" className="btn-submit" disabled={loading}>
-              {loading ? '⏳ กำลังบันทึก...' : isEdit ? '💾 บันทึกการแก้ไข' : '➕ เพิ่มการ์ตูน'}
+              {loading ? (
+                '⏳ กำลังบันทึก...'
+              ) : isEdit ? (
+                '💾 บันทึกการแก้ไข'
+              ) : (
+                <><span className="icon icon-add" aria-hidden="true"></span> เพิ่มการ์ตูน</>
+              )}
             </button>
           </div>
         </form>

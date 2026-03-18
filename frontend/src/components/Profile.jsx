@@ -39,7 +39,7 @@ function Profile() {
       
       <div className="profile-container">
         <div className="profile-header">
-          <h1>👤 โปรไฟล์</h1>
+          <h1><span className="icon icon-user" aria-hidden="true"></span> โปรไฟล์</h1>
         </div>
 
         <div className="profile-content">
@@ -59,22 +59,13 @@ function Profile() {
                 <span className="info-label">อีเมล:</span>
                 <span className="info-value">{user?.email}</span>
               </div>
-              <div className="info-row">
-                <span className="info-label">บทบาท:</span>
-                <span className={`role-badge ${user?.role}`}>
-                  {user?.role === 'admin' ? '👑 ผู้ดูแลระบบ' : '👤 ผู้ใช้ทั่วไป'}
-                </span>
-              </div>
-              <div className="info-row">
-                <span className="info-label">สถานะ:</span>
-                <span className="status-badge active">✅ ใช้งาน</span>
-              </div>
+
             </div>
           </div>
 
           <div className="quick-links">
             <button className="link-card" onClick={() => navigate('/bookmarks')}>
-              <div className="link-icon">🔖</div>
+              <div className="link-icon"><span className="icon icon-bookmark" aria-hidden="true"></span></div>
               <div className="link-text">
                 <h3>บุ๊คมาร์ค</h3>
                 <p>การ์ตูนที่บันทึกไว้</p>
@@ -82,7 +73,7 @@ function Profile() {
             </button>
 
             <button className="link-card" onClick={() => navigate('/history')}>
-              <div className="link-icon">📚</div>
+              <div className="link-icon"><span className="icon icon-bookmark" aria-hidden="true"></span></div>
               <div className="link-text">
                 <h3>ประวัติการอ่าน</h3>
                 <p>การ์ตูนที่อ่านล่าสุด</p>

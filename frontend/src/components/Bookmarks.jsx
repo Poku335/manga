@@ -38,13 +38,13 @@ function Bookmarks() {
       
       <div className="bookmarks-container">
         <div className="bookmarks-header">
-          <h1>🔖 บุ๊คมาร์ค</h1>
+          <h1><span className="icon icon-bookmark" aria-hidden="true"></span> บุ๊คมาร์ค</h1>
           <p>การ์ตูนที่คุณบันทึกไว้</p>
         </div>
 
         {bookmarks.length === 0 ? (
           <div className="empty-state">
-            <div className="empty-icon">📚</div>
+            <div className="empty-icon"><span className="icon icon-bookmark" aria-hidden="true"></span></div>
             <h2>ยังไม่มีบุ๊คมาร์ค</h2>
             <p>เริ่มบันทึกการ์ตูนที่คุณชอบเพื่ออ่านต่อในภายหลัง</p>
             <button className="btn-browse" onClick={() => navigate('/comics')}>
@@ -56,7 +56,7 @@ function Bookmarks() {
             {bookmarks.map((bookmark) => (
               <div key={bookmark.id} className="bookmark-card" onClick={() => navigate(`/comics/${bookmark.chapter?.comic?.id}/chapters/${bookmark.chapter?.id}`)}>
                 <img
-                  src={bookmark.chapter?.comic?.cover_image || 'https://via.placeholder.com/200x280'}
+                  src={bookmark.chapter?.comic?.cover_image || 'https://via.placeholder.com/200x280?text=No+Image'}
                   alt={bookmark.chapter?.comic?.title}
                   className="bookmark-cover"
                 />

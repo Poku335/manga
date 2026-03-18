@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { comicsAPI } from '../api/comics';
+import Navbar from './Navbar';
 import './ComicDetail.css';
 
 function ComicDetail() {
@@ -38,6 +39,7 @@ function ComicDetail() {
 
   return (
     <div className="comic-detail-page">
+      <Navbar />
       <div className="container">
         <button onClick={() => navigate('/comics')} className="btn btn-outline mb-3">
           ← Back to Comics
@@ -46,14 +48,14 @@ function ComicDetail() {
         <div className="card mb-3">
           <div className="comic-detail-content">
             <img
-              src={comic.cover_image || 'https://via.placeholder.com/300x400'}
+              src={comic.cover_image || 'https://via.placeholder.com/220x320?text=No+Image'}
               alt={comic.title}
               className="detail-cover"
             />
             <div className="detail-info">
               <h1 className="detail-title">{comic.title}</h1>
               <p className="text-muted mb-2"><strong>Author:</strong> {comic.author}</p>
-              <p className="text-muted mb-2"><strong>Rating:</strong> ⭐ {comic.average_rating}</p>
+              <p className="text-muted mb-2"><strong>Rating:</strong> ★ {comic.average_rating}</p>
               <p className="mb-2">{comic.description}</p>
               <p className="text-muted">Views: {comic.views_count}</p>
             </div>

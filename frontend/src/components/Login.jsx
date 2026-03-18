@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { authAPI } from '../api/auth';
 import { useAuthStore } from '../store/authStore';
+import Navbar from './Navbar';
 import './Login.css';
 
 function Login() {
@@ -38,8 +39,10 @@ function Login() {
   };
 
   return (
-    <div className="auth-container">
-      <div className="auth-card">
+    <>
+      <Navbar />
+      <div className="auth-container">
+        <div className="auth-card">
         <h2 className="auth-title">Welcome Back</h2>
 
         <form onSubmit={handleSubmit} className="auth-form">
@@ -85,7 +88,8 @@ function Login() {
           </button>
         </div>
       </div>
-    </div>
+      </div>
+    </>
   );
 }
 

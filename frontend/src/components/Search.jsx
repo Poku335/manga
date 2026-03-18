@@ -31,7 +31,7 @@ function Search() {
       
       <div className="search-container">
         <div className="search-header">
-          <h1>🔍 ค้นหาการ์ตูน</h1>
+          <h1><span className="icon icon-search" aria-hidden="true"></span> ค้นหาการ์ตูน</h1>
           <form onSubmit={handleSearch} className="search-form">
             <input
               type="text"
@@ -41,7 +41,7 @@ function Search() {
               className="search-input"
             />
             <button type="submit" className="search-btn" disabled={loading}>
-              {loading ? '⏳' : '🔍'} ค้นหา
+              {loading ? '⏳' : <span className="icon icon-search" aria-hidden="true"></span>} ค้นหา
             </button>
           </form>
         </div>
@@ -52,13 +52,13 @@ function Search() {
             <div className="results-grid">
               {results.map((comic) => (
                 <div key={comic.id} className="result-card" onClick={() => navigate(`/comics/${comic.id}`)}>
-                  <img src={comic.cover_image || 'https://via.placeholder.com/200x280'} alt={comic.title} />
+                  <img src={comic.cover_image || 'https://via.placeholder.com/160x220?text=No+Image'} alt={comic.title} />
                   <div className="result-info">
                     <h3>{comic.title}</h3>
                     <p>{comic.author}</p>
                     <div className="result-stats">
-                      <span>⭐ {comic.average_rating}</span>
-                      <span>👁 {comic.views_count}</span>
+                      <span>★ {comic.average_rating}</span>
+                      <span><span className="icon icon-history" aria-hidden="true"></span> {comic.views_count}</span>
                     </div>
                   </div>
                 </div>
@@ -69,7 +69,7 @@ function Search() {
 
         {!loading && results.length === 0 && query && (
           <div className="no-results">
-            <p>😔 ไม่พบผลการค้นหาสำหรับ "{query}"</p>
+            <p>ไม่พบผลการค้นหาสำหรับ "{query}"</p>
           </div>
         )}
       </div>

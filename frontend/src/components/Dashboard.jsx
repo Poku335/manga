@@ -15,14 +15,6 @@ function Dashboard() {
     totalUsers: 0
   });
 
-  useEffect(() => {
-    if (user?.role !== 'admin') {
-      navigate('/comics');
-      return;
-    }
-    loadData();
-  }, [user, navigate]);
-
   const loadData = async () => {
     try {
       const { data } = await comicsAPI.getAll();
@@ -36,6 +28,15 @@ function Dashboard() {
       console.error('Failed to load data:', error);
     }
   };
+
+  useEffect(() => {
+    if (user?.role !== 'admin') {
+      navigate('/comics');
+      return;
+    }
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    loadData();
+  }, [user, navigate]);
 
   const handleDelete = async (id) => {
     if (window.confirm('ต้องการลบการ์ตูนนี้?')) {
@@ -54,29 +55,29 @@ function Dashboard() {
       
       <div className="dashboard-container">
         <div className="dashboard-header">
-          <h1>📊 Admin Dashboard</h1>
+          <h1><span className="icon icon-dashboard" aria-hidden="true"></span> Admin Dashboard</h1>
           <button className="btn-create" onClick={() => navigate('/dashboard/comics/new')}>
-            ➕ เพิ่มการ์ตูนใหม่
+            <span className="icon icon-add" aria-hidden="true"></span> เพิ่มการ์ตูนใหม่
           </button>
         </div>
 
         <div className="stats-grid">
           <div className="stat-card">
-            <div className="stat-icon">📚</div>
+            <div className="stat-icon"><span className="icon icon-bookmark" aria-hidden="true"></span></div>
             <div className="stat-info">
               <div className="stat-value">{stats.totalComics}</div>
               <div className="stat-label">การ์ตูนทั้งหมด</div>
             </div>
           </div>
           <div className="stat-card">
-            <div className="stat-icon">👁</div>
+            <div className="stat-icon icon icon-history" aria-hidden="true"></div>
             <div className="stat-info">
               <div className="stat-value">{stats.totalViews.toLocaleString()}</div>
               <div className="stat-label">ยอดเข้าชมรวม</div>
             </div>
           </div>
           <div className="stat-card">
-            <div className="stat-icon">👥</div>
+            <div className="stat-icon"><span className="icon icon-user" aria-hidden="true"></span></div>
             <div className="stat-info">
               <div className="stat-value">{stats.totalUsers}</div>
               <div className="stat-label">สมาชิกทั้งหมด</div>
@@ -88,7 +89,7 @@ function Dashboard() {
           <div className="section-header">
             <h2>จัดการการ์ตูน</h2>
             <button className="btn-users" onClick={() => navigate('/dashboard/users')}>
-              👥 จัดการผู้ใช้
+              <span className="icon icon-user" aria-hidden="true"></span> จัดการผู้ใช้
             </button>
           </div>
           <div className="table-wrapper">
@@ -114,18 +115,18 @@ function Dashboard() {
                     <td>{comic.author}</td>
                     <td>
                       <span className={`status-badge ${comic.status}`}>
-                        {comic.status === 'published' ? '✅ เผยแพร่' : '📝 แบบร่าง'}
+                        {comic.status === 'published' ? '✔ เผยแพร่' : '✎ แบบร่าง'}
                       </span>
                     </td>
                     <td>{comic.views_count}</td>
-                    <td>⭐ {comic.average_rating}</td>
+                    <td>★ {comic.average_rating}</td>
                     <td>
                       <div className="action-buttons">
                         <button className="btn-edit" onClick={() => navigate(`/dashboard/comics/${comic.id}/edit`)}>
-                          ✏️
+                          <span className="icon icon-edit" aria-hidden="true"></span>
                         </button>
                         <button className="btn-delete" onClick={() => handleDelete(comic.id)}>
-                          🗑️
+                          <span className="icon icon-delete" aria-hidden="true"></span>
                         </button>
                       </div>
                     </td>
